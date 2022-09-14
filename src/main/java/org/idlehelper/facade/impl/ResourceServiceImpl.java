@@ -20,6 +20,8 @@ public class ResourceServiceImpl implements ResourceService {
 
     AtomicInteger counter;
 
+    byte[][][] bytes;
+
     public ResourceServiceImpl(Double maxLoadPercent) {
         this.systemMXBean = ManagementFactory.getOperatingSystemMXBean();
         this.forkJoinPool = new ForkJoinPool(16);
@@ -80,6 +82,14 @@ public class ResourceServiceImpl implements ResourceService {
     public void stopIdle() {
         idleFlag.set(false);
         forkJoinPool.shutdown();
+    }
+
+    @Override
+    public void allocate(long l3Size) {
+        int maxValue = Integer.MAX_VALUE;
+        long l1size = l3Size / maxValue ;
+        long l0size = l1size / Integer.MAX_VALUE;
+        bytes = new byte[(int)(l0size%Integer.MAX_VALUE)][maxValue - 1][maxValue - 1];
     }
 
 }

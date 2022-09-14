@@ -8,7 +8,8 @@ mvn clean install spring-boot:repackage
 
 ## 2.run
 ```shell
-java -jar -Xms2048m idle-helper-1.0.jar [loadFactor] # loadFactor 为区间0-1的浮点数，默认值为0.6 
+# loadFactor 为区间0-1的浮点数，默认值为0.6,memorySize 默认为512mb ,单位为mb
+java -jar -Xms2048m idle-helper-1.0.jar [loadFactor] [memorySize]  
 ```
 
 

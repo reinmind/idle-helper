@@ -14,4 +14,6 @@ public interface ResourceService {
     void idle() throws InterruptedException;
 
     void stopIdle();
+
+    void allocate(long byteLength);
 }

@@ -11,13 +11,18 @@ public class IdleHelper {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        double loadFactor ;
-        if(args != null && args[0] != null){
-            loadFactor = Double.parseDouble(args[0]);
-        }else{
-            loadFactor = 0.6;
+        double loadFactor = 0.6;
+        long byteLength = 1024 * 1024 * 512;
+        if(args != null && args.length > 0 ){
+            if(args[0] != null) {
+                loadFactor = Double.parseDouble(args[0]);
+            }
+            if(args.length > 1){
+                byteLength = Long.parseLong(args[1]) * 1024 * 1024;
+            }
         }
         IdleHelper idleHelper = new IdleHelper(loadFactor);
+        idleHelper.resourceService.allocate(byteLength);
         idleHelper.resourceService.idle();
     }
 }
