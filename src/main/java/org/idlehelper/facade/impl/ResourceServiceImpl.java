@@ -22,6 +22,8 @@ public class ResourceServiceImpl implements ResourceService {
 
     byte[][][] bytes;
 
+    Integer MB_SIZE = 1024 * 1024;
+
     public ResourceServiceImpl(Double maxLoadPercent) {
         this.systemMXBean = ManagementFactory.getOperatingSystemMXBean();
         this.forkJoinPool = new ForkJoinPool(16);
@@ -86,10 +88,8 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public void allocate(long l3Size) {
-        int maxValue = Integer.MAX_VALUE;
-        long l1size = l3Size / maxValue ;
-        long l0size = l1size / Integer.MAX_VALUE;
-        bytes = new byte[(int)(l0size%Integer.MAX_VALUE)][maxValue - 1][maxValue - 1];
+        long l2size = l3Size / MB_SIZE ;
+        bytes = new byte[(int)(l2size%Integer.MAX_VALUE)][1024][1024];
     }
 
 }
